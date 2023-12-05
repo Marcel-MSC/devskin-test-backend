@@ -59,6 +59,18 @@ router.get('/getallproducts', async (req, res) => {
   }
 });
 
+// Get product by id
+router.get('/getallproducts/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const products = await Product.find({ _id: id});
+    res.send(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error);
+  }
+});
+
 // Update a product
 router.put('/updateproducts/:id', async (req, res) => {
   const { id } = req.params;
